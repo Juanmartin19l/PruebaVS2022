@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Store.categories>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<!-- Campo de búsqueda -->
+<p>
+    <input type="text" id="searchBox" placeholder="Buscar categoría..." onkeyup="searchCategories()" />
+</p>
+
+<!-- Tabla de resultados -->
+<div id="categoriesTable">
+    <table class="table">
+        <thead>
+            <tr>
+                <th onclick="sortTable('category_id')">ID</th>
+                <th onclick="sortTable('category_name')">Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.category_id</td>
+                    <td>@category.category_name</td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = category.category_id }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = category.category_id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = category.category_id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        function searchCategories() {
+            var searchText = $('#searchBox').val();
+
+            $.ajax({
+                url: '@Url.Action("Search", "categories")', // Ruta al método de búsqueda en el controlador
+                type: 'GET',
+                data: { query: searchText }, // Enviar el texto de búsqueda como parámetro
+                success: function (result) {
+                    $('#categoriesTable').html(result);
+                },
+                error: function () {
+                    alert('Error al buscar las categorías.');
+                }
+            });
+        }
+
+        function sortTable(column) {
+            var currentDirection = $('#sortDirection').val();
+            var newDirection = currentDirection === 'asc' ? 'desc' : 'asc';
+            $('#sortDirection').val(newDirection);
+
+            $.ajax({
+                url: '@Url.Action("Sort", "categories")', // Ruta al método de ordenación en el controlador
+                type: 'GET',
+                data: { column: column, direction: newDirection }, // Enviar la columna y la dirección
+                success: function (result) {
+                    $('#categoriesTable').html(result);
+                },
+                error: function () {
+                    alert('Error al ordenar las categorías.');
+                }
+            });
+        }
+    </script>
+    <input type="hidden" id="sortDirection" value="asc" /> <!-- Para mantener el estado de la dirección de ordenación -->
+}

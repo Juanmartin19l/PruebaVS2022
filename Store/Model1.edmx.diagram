@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a9982d9a8ca4139a3f7492c6ecf97da" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="Database1Model.brands" Width="1.5" PointX="0.625" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.categories" Width="1.5" PointX="0.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.products" Width="1.5" PointX="3.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.stocks" Width="1.5" PointX="6" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.customers" Width="1.5" PointX="9.125" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.order_items" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.orders" Width="1.5" PointX="11.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.staffs" Width="1.5" PointX="10.375" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.stores" Width="1.5" PointX="3.375" PointY="6.375" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.FK__products__brand___3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__products__catego__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__order_ite__produ__4D94879B" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.5378474614768862" PointY="4.8167936197916674" />
+          <ConnectorPoint PointX="4.5378474614768862" PointY="5.1917936197916674" />
+          <ConnectorPoint PointX="9.375" PointY="5.1917936197916674" />
+          <ConnectorPoint PointX="9.375" PointY="7.8323386945340712" />
+          <ConnectorPoint PointX="9" PointY="7.8323386945340712" />
+        </AssociationConnector>
+        <AssociationConnector Association="Database1Model.FK__stocks__product___5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__stocks__store_id__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__orders__customer__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__order_ite__order__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__orders__staff_id__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__orders__store_id__47DBAE45" ManuallyRouted="false" ></AssociationConnector>
+        <AssociationConnector Association="Database1Model.FK__staffs__manager___440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__staffs__store_id__4316F928" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

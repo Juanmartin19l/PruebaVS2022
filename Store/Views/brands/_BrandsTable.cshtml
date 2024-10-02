@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Store.brands>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a href="javascript:void(0)" onclick="sortTable('brand_id')">Brand ID</a>
+            </th>
+            <th>
+                <a href="javascript:void(0)" onclick="sortTable('brand_name')">Brand Name</a>
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.brand_id</td>
+                <td>@item.brand_name</td>
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.brand_id }) |
+                    @Html.ActionLink("Editar", "Edit", new { id = item.brand_id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.brand_id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

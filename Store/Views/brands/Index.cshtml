@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Store.brands>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<!-- Campo de búsqueda -->
+<p>
+    <input type="text" id="searchBox" placeholder="Buscar marca..." onkeyup="searchBrands()" />
+</p>
+
+<!-- Tabla de resultados -->
+<div id="brandsTable">
+    @Html.Partial("_BrandsTable", Model)
+</div>
+
+@section Scripts {
+    <script>
+        function searchBrands() {
+            var searchText = $('#searchBox').val();
+
+            $.ajax({
+                url: '@Url.Action("Search", "brands")', // Ruta al método de búsqueda en el controlador
+                type: 'GET',
+                data: { query: searchText }, // Enviar el texto de búsqueda como parámetro
+                success: function (result) {
+                    // Reemplazar el contenido de la tabla con los resultados filtrados
+                    $('#brandsTable').html(result);
+                },
+                error: function () {
+                    alert('Error al buscar las marcas.');
+                }
+            });
+        }
+
+        function sortTable(column) {
+            // Alternar la dirección de ordenación
+            var currentDirection = $('#sortDirection').val();
+            var newDirection = currentDirection === 'asc' ? 'desc' : 'asc';
+            $('#sortDirection').val(newDirection);
+
+            $.ajax({
+                url: '@Url.Action("Sort", "brands")', // Ruta al método de ordenación en el controlador
+                type: 'GET',
+                data: { column: column, direction: newDirection }, // Enviar la columna y la dirección
+                success: function (result) {
+                    // Reemplazar el contenido de la tabla con los resultados ordenados
+                    $('#brandsTable').html(result);
+                },
+                error: function () {
+                    alert('Error al ordenar las marcas.');
+                }
+            });
+        }
+    </script>
+    <input type="hidden" id="sortDirection" value="asc" /> <!-- Para mantener el estado de la dirección de ordenación -->
+}

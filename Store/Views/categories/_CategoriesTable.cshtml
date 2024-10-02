@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Store.categories>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th onclick="sortTable('category_name')">Nombre de la Categoría</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.category_name</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = category.category_id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = category.category_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = category.category_id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
